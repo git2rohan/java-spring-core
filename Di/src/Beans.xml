@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+         
+  <!-- we can declare engine object separately and can call it by ref -->
+  <bean id="engineObject" class="com.di.bean.Engine"></bean>
+  
+ <bean id="bike" class="com.di.bean.Bike">
+ 
+ 	<!-- Setting property by setter -->
+ 	<property name="color" value="Red"></property>
+ 	
+ 	<!-- Setting property by constructor -->
+ 	<constructor-arg name="model" value="Yamaha"></constructor-arg>
+ 	
+ 	<!-- Set object Engine using constructor -->
+ 	<constructor-arg name="engine" ref="engineObject">
+ 		<!-- 
+	 		We can use this but we can just write it once and reuse - ref line 8
+	 		<bean id="engineObjectBike" class="com.di.bean.Engine" ></bean> 
+ 		-->
+ 	</constructor-arg>
+ </bean>
+ 
+   <bean id="car" class="com.di.bean.Car">
+   		
+   		<!-- Setting brand property by setter -->
+   		<property name="brand" value="Tesla"></property>
+   		
+   		<!-- Setting created property  setter method-->
+   		<property name="created" value="20/01/2010"></property>
+   		
+   		<!-- Set object Engine using constructor -->
+	 	<constructor-arg name="engine" ref="engineObject">
+	 		<!-- 
+		 		We can use this but we can just write it once and reuse - ref line 8
+		 		<bean id="engineObjectBike" class="com.di.bean.Engine" ></bean> 
+	 		-->
+	 	</constructor-arg>
+   		
+   </bean>
+ </beans>
